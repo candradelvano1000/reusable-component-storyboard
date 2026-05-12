@@ -6,10 +6,10 @@ type Item = { id: string; lifecycleStatus: string };
 
 const meta = {
   title: 'mcs-product-catalog/Pages/StatusBar',
-  component: StatusBar<Item>,
+  component: StatusBar,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
-} satisfies Meta<typeof StatusBar<Item>>;
+} satisfies Meta<typeof StatusBar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

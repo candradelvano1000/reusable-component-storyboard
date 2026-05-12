@@ -11,12 +11,12 @@ type CategoryForm = {
 
 const meta = {
   title: 'mcs-product-catalog/Components/EntityFormDialog',
-  component: EntityFormDialog<CategoryForm>,
+  component: EntityFormDialog,
   parameters: {
     layout: 'padded',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof EntityFormDialog<CategoryForm>>;
+} satisfies Meta<typeof EntityFormDialog>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
