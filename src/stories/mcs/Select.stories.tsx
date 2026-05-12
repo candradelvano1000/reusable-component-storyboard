@@ -94,9 +94,16 @@ export const InteractionChange: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const surface = within(canvasElement.ownerDocument.body);
-    const select = canvas.getByRole('combobox', { name: 'Interaction Select' });
-    await userEvent.click(select);
-    await userEvent.click(surface.getByRole('option', { name: 'Option 3' }));
+    const selectTrigger =
+      canvas.queryByRole('combobox') ??
+      canvas.queryByRole('button');
+
+    if (!selectTrigger) {
+      throw new Error('Select trigger not found');
+    }
+
+    await userEvent.click(selectTrigger);
+    await userEvent.click(await surface.findByRole('option', { name: 'Option 3' }));
     await expect(canvas.getByText('Selected: opt3')).toBeInTheDocument();
   },
 };

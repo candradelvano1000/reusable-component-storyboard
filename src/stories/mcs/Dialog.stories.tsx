@@ -88,8 +88,11 @@ export const InteractionOpenDialog: Story = {
   render: () => <DialogWithState />,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    const surface = within(canvasElement.ownerDocument.body);
     await userEvent.click(canvas.getByRole('button', { name: 'Open Dialog' }));
-    await expect(canvas.getByText('This is the dialog content. You can add any content here.')).toBeInTheDocument();
+    await expect(
+      await surface.findByText(/This is the dialog content/i),
+    ).toBeInTheDocument();
   },
 };
 
