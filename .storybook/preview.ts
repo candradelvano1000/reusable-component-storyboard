@@ -1,4 +1,9 @@
 import type { Preview } from '@storybook/react-vite'
+import 'intro.js/minified/introjs.min.css'
+import introJs from 'intro.js'
+import type { IntroJsParameters } from '../src/stories/shared/introJs'
+
+let introTimer: ReturnType<typeof setTimeout> | undefined;
 
 const g = globalThis as typeof globalThis & {
   process?: { env?: Record<string, string> };
@@ -19,6 +24,53 @@ Object.assign(g.process.env, {
 });
 
 const preview: Preview = {
+  decorators: [
+    (Story, context) => {
+      if (globalThis.window !== undefined) {
+        const introParams = (context.parameters?.introJs ?? {}) as IntroJsParameters;
+
+        if (introTimer) {
+          clearTimeout(introTimer);
+        }
+
+        if (introParams.enabled) {
+          introTimer = setTimeout(() => {
+            const rootElement = document.querySelector('#storybook-root') as HTMLElement | null;
+            const instance = rootElement ? introJs(rootElement) : introJs();
+
+            const resolvedSteps = (introParams.steps ?? [])
+              .map((step) => {
+                const resolvedElement = step.element ?? (step.selector ? document.querySelector(step.selector) : undefined);
+                return {
+                  element: resolvedElement,
+                  title: step.title,
+                  intro: step.intro,
+                  position: step.position,
+                };
+              })
+              .filter((step) => step.intro && (!step.element || step.element instanceof Element));
+
+            const options = {
+              showProgress: true,
+              showBullets: false,
+              nextLabel: 'Next',
+              prevLabel: 'Back',
+              doneLabel: 'Done',
+              ...(resolvedSteps.length ? { steps: resolvedSteps } : {}),
+            };
+
+            if (introParams.options) {
+              Object.assign(options, introParams.options);
+            }
+
+            instance.setOptions(options).start();
+          }, introParams.delayMs ?? 200);
+        }
+      }
+
+      return Story();
+    },
+  ],
   parameters: {
     controls: {
       matchers: {
@@ -28,9 +80,6 @@ const preview: Preview = {
     },
 
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
       test: 'todo'
     }
   },
