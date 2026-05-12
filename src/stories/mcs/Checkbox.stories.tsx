@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomCheckbox from '@mcs/common/checkbox';
 
 const meta = {
-  title: 'MCS/Components/Checkbox',
+  title: 'mcs-common/Components/Checkbox',
   component: CustomCheckbox,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -18,3 +18,4 @@ export const Default: Story = {
     onChange: () => {}
   }
 };
+

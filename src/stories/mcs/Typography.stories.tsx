@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomTypography from '@mcs/common/typography';
 
 const meta = {
-  title: 'MCS/Components/Typography',
+  title: 'mcs-common/Components/Typography',
   component: CustomTypography,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -17,3 +17,4 @@ export const Default: Story = {
     variant: 'h6'
   }
 };
+

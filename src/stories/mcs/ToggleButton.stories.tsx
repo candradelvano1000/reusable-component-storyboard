@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomToggleButton from '@mcs/common/togglebutton';
 
 const meta = {
-  title: 'MCS/Components/ToggleButton',
+  title: 'mcs-common/Components/ToggleButton',
   component: CustomToggleButton,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -22,3 +22,4 @@ export const Default: Story = {
     ]
   }
 };
+

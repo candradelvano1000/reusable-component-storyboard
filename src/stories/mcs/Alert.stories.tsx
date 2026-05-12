@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomAlert from '@mcs/common/alert';
 
 const meta = {
-  title: 'MCS/Components/Alert',
+  title: 'mcs-common/Components/Alert',
   component: CustomAlert,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -18,3 +18,4 @@ export const Default: Story = {
     title: 'Success'
   }
 };
+

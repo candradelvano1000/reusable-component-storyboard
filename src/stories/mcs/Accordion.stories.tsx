@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomAccordion from '@mcs/common/accordion';
 
 const meta = {
-  title: 'MCS/Components/Accordion',
+  title: 'mcs-common/Components/Accordion',
   component: CustomAccordion,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -17,3 +17,4 @@ export const Default: Story = {
     content: 'MCS is a micro-frontend platform.'
   }
 };
+

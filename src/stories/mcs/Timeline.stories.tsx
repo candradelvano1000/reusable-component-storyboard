@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomTimeline from '@mcs/common/timeline';
 
 const meta = {
-  title: 'MCS/Components/Timeline',
+  title: 'mcs-common/Components/Timeline',
   component: CustomTimeline,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -20,3 +20,4 @@ export const Default: Story = {
     ]
   }
 };
+

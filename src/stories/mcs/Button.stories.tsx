@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomButton from '@mcs/common/button';
 
 const meta = {
-  title: 'MCS/Components/Button',
+  title: 'mcs-common/Components/Button',
   component: CustomButton,
   parameters: {
     layout: 'padded',
@@ -111,3 +111,4 @@ export const FullWidth: Story = {
     fullWidth: true,
   },
 };
+

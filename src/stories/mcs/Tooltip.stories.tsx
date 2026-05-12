@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomTooltip from '@mcs/common/tooltip';
 
 const meta = {
-  title: 'MCS/Components/Tooltip',
+  title: 'mcs-common/Components/Tooltip',
   component: CustomTooltip,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -17,3 +17,4 @@ export const Default: Story = {
     children: 'Hover this text'
   }
 };
+

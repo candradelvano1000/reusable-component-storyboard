@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomTable from '@mcs/common/table';
 
 const meta = {
-  title: 'MCS/Components/Table',
+  title: 'mcs-common/Components/Table',
   component: CustomTable,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -20,3 +20,4 @@ export const Default: Story = {
     ]
   }
 };
+

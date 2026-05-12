@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomBadge from '@mcs/common/badge';
 
 const meta = {
-  title: 'MCS/Components/Badge',
+  title: 'mcs-common/Components/Badge',
   component: CustomBadge,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -18,3 +18,4 @@ export const Default: Story = {
     color: 'primary'
   }
 };
+

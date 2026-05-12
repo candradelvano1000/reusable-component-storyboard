@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import AutoComplete from '@mcs/common/autocomplete';
 
 const meta = {
-  title: 'MCS/Components/AutoComplete',
+  title: 'mcs-common/Components/AutoComplete',
   component: AutoComplete,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -17,3 +17,4 @@ export const Default: Story = {
     options: [{ label: 'Jakarta' }, { label: 'Bandung' }, { label: 'Surabaya' }]
   }
 };
+

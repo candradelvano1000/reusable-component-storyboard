@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomChip from '@mcs/common/chip';
 
 const meta = {
-  title: 'MCS/Components/Chip',
+  title: 'mcs-common/Components/Chip',
   component: CustomChip,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -17,3 +17,4 @@ export const Default: Story = {
     color: 'success'
   }
 };
+

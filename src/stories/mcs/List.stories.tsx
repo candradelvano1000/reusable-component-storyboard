@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomList from '@mcs/common/list';
 
 const meta = {
-  title: 'MCS/Components/List',
+  title: 'mcs-common/Components/List',
   component: CustomList,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -19,3 +19,4 @@ export const Default: Story = {
     ]
   }
 };
+

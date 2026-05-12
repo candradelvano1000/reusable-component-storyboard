@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomSelect from '@mcs/common/select';
 
 const meta = {
-  title: 'MCS/Components/Select',
+  title: 'mcs-common/Components/Select',
   component: CustomSelect,
   parameters: {
     layout: 'padded',
@@ -72,3 +72,4 @@ export const WithHelperText: Story = {
     helperText: 'Please select one option',
   },
 };
+

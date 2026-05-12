@@ -15,6 +15,11 @@ export default defineConfig({
   resolve: {
     alias: {
       '@mcs/common': path.resolve(dirname, '../mcs/common/src'),
+      '@mcs/product-catalog': path.resolve(dirname, '../mcs/product-catalog/src'),
+      'common_remote/Chip': path.resolve(dirname, '../mcs/common/src/chip'),
+      'common_remote/Typography': path.resolve(dirname, '../mcs/common/src/typography'),
+      'common_remote/Divider': path.resolve(dirname, '../mcs/common/src/divider'),
+      'common_remote/Alert': path.resolve(dirname, '../mcs/common/src/alert'),
     },
   },
   test: {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomKanban from '@mcs/common/kanban';
 
 const meta = {
-  title: 'MCS/Components/Kanban',
+  title: 'mcs-common/Components/Kanban',
   component: CustomKanban,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -26,3 +26,4 @@ export const Default: Story = {
     onItemMove: () => {}
   }
 };
+

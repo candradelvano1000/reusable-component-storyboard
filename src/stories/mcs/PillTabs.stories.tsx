@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import PillTabs from '@mcs/common/pill-tabs';
 
 const meta = {
-  title: 'MCS/Components/PillTabs',
+  title: 'mcs-common/Components/PillTabs',
   component: PillTabs,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -21,3 +21,4 @@ export const Default: Story = {
     ]
   }
 };
+

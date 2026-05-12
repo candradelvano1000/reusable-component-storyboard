@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomPaper from '@mcs/common/paper';
 
 const meta = {
-  title: 'MCS/Components/Paper',
+  title: 'mcs-common/Components/Paper',
   component: CustomPaper,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -17,3 +17,4 @@ export const Default: Story = {
     elevation: 2
   }
 };
+

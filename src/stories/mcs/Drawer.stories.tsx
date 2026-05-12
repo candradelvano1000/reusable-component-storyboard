@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomDrawer from '@mcs/common/drawer';
 
 const meta = {
-  title: 'MCS/Components/Drawer',
+  title: 'mcs-common/Components/Drawer',
   component: CustomDrawer,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -19,3 +19,4 @@ export const Default: Story = {
     children: 'Drawer content'
   }
 };
+

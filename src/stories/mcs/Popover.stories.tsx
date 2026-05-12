@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomPopover from '@mcs/common/popover';
 
 const meta = {
-  title: 'MCS/Components/Popover',
+  title: 'mcs-common/Components/Popover',
   component: CustomPopover,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -19,3 +19,4 @@ export const Default: Story = {
     children: 'Popover content'
   }
 };
+

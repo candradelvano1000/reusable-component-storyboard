@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomTabs from '@mcs/common/tabs';
 
 const meta = {
-  title: 'MCS/Components/Tabs',
+  title: 'mcs-common/Components/Tabs',
   component: CustomTabs,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -21,3 +21,4 @@ export const Default: Story = {
     ]
   }
 };
+

@@ -4,7 +4,7 @@ import CustomButton from '@mcs/common/button';
 import { useState } from 'react';
 
 const meta = {
-  title: 'MCS/Components/Dialog',
+  title: 'mcs-common/Components/Dialog',
   component: CustomDialog,
   parameters: {
     layout: 'padded',
@@ -82,3 +82,4 @@ export const ConfirmationDialog: Story = {
   },
   render: (args) => <CustomDialog {...args} />,
 };
+

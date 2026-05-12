@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomDataGrid from '@mcs/common/datagrid';
 
 const meta = {
-  title: 'MCS/Components/DataGrid',
+  title: 'mcs-common/Components/DataGrid',
   component: CustomDataGrid,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -25,3 +25,4 @@ export const Default: Story = {
     ]
   }
 };
+

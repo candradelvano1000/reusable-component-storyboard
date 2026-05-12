@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import SidebarV2 from '@mcs/common/sidebar-v2';
 
 const meta = {
-  title: 'MCS/Components/SidebarV2',
+  title: 'mcs-common/Components/SidebarV2',
   component: SidebarV2,
   parameters: { layout: 'fullscreen' },
   tags: ['autodocs']
@@ -46,3 +46,4 @@ export const Default: Story = {
     onNavigate: () => {}
   }
 };
+

@@ -3,7 +3,7 @@ import CustomCard from '@mcs/common/card';
 import CustomTypography from '@mcs/common/typography';
 
 const meta = {
-  title: 'MCS/Components/Card',
+  title: 'mcs-common/Components/Card',
   component: CustomCard,
   parameters: {
     layout: 'padded',
@@ -63,3 +63,4 @@ export const Outlined: Story = {
     </CustomCard>
   ),
 };
+

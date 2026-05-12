@@ -5,7 +5,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CustomBottomNavigation from '@mcs/common/bottomnavigation';
 
 const meta = {
-  title: 'MCS/Components/BottomNavigation',
+  title: 'mcs-common/Components/BottomNavigation',
   component: CustomBottomNavigation,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -24,3 +24,4 @@ export const Default: Story = {
     ]
   }
 };
+

@@ -57,7 +57,7 @@ import PillTabs from '@mcs/common/pill-tabs';
 import AutoComplete from '@mcs/common/autocomplete';
 
 const meta = {
-  title: 'MCS/Components/All Components',
+  title: 'mcs-common/Components/All Components',
   parameters: {
     layout: 'fullscreen'
   }

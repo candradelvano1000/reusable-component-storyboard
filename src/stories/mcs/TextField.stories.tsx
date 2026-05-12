@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomTextField from '@mcs/common/textfield';
 
 const meta = {
-  title: 'MCS/Components/TextField',
+  title: 'mcs-common/Components/TextField',
   component: CustomTextField,
   parameters: {
     layout: 'padded',
@@ -89,3 +89,4 @@ export const Required: Story = {
     required: true,
   },
 };
+

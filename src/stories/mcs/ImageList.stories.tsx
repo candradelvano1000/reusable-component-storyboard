@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomImageList from '@mcs/common/imagelist';
 
 const meta = {
-  title: 'MCS/Components/ImageList',
+  title: 'mcs-common/Components/ImageList',
   component: CustomImageList,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -21,3 +21,4 @@ export const Default: Story = {
     cols: 3
   }
 };
+

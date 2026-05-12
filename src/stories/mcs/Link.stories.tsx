@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomLink from '@mcs/common/link';
 
 const meta = {
-  title: 'MCS/Components/Link',
+  title: 'mcs-common/Components/Link',
   component: CustomLink,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -18,3 +18,4 @@ export const Default: Story = {
     underline: 'hover'
   }
 };
+

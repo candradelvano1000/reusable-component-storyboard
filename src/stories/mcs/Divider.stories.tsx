@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomDivider from '@mcs/common/divider';
 
 const meta = {
-  title: 'MCS/Components/Divider',
+  title: 'mcs-common/Components/Divider',
   component: CustomDivider,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -16,3 +16,4 @@ export const Default: Story = {
     children: 'OR'
   }
 };
+

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomModal from '@mcs/common/modal';
 
 const meta = {
-  title: 'MCS/Components/Modal',
+  title: 'mcs-common/Components/Modal',
   component: CustomModal,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -18,3 +18,4 @@ export const Default: Story = {
     children: 'Modal content'
   }
 };
+

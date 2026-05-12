@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomSnackbar from '@mcs/common/snackbar';
 
 const meta = {
-  title: 'MCS/Components/Snackbar',
+  title: 'mcs-common/Components/Snackbar',
   component: CustomSnackbar,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -19,3 +19,4 @@ export const Default: Story = {
     severity: 'success'
   }
 };
+

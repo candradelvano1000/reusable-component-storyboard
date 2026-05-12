@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CustomSpeedDial from '@mcs/common/speeddial';
 
 const meta = {
-  title: 'MCS/Components/SpeedDial',
+  title: 'mcs-common/Components/SpeedDial',
   component: CustomSpeedDial,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -24,3 +24,4 @@ export const Default: Story = {
     ]
   }
 };
+

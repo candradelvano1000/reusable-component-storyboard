@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomTransferList from '@mcs/common/transferlist';
 
 const meta = {
-  title: 'MCS/Components/TransferList',
+  title: 'mcs-common/Components/TransferList',
   component: CustomTransferList,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -18,3 +18,4 @@ export const Default: Story = {
     onChange: () => {}
   }
 };
+

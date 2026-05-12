@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomAvatar from '@mcs/common/avatar';
 
 const meta = {
-  title: 'MCS/Components/Avatar',
+  title: 'mcs-common/Components/Avatar',
   component: CustomAvatar,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -18,3 +18,4 @@ export const Default: Story = {
     size: 48
   }
 };
+

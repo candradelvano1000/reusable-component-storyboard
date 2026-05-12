@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomRating from '@mcs/common/rating';
 
 const meta = {
-  title: 'MCS/Components/Rating',
+  title: 'mcs-common/Components/Rating',
   component: CustomRating,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -17,3 +17,4 @@ export const Default: Story = {
     onChange: () => {}
   }
 };
+

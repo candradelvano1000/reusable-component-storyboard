@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Topbar from '@mcs/common/topbar';
 
 const meta = {
-  title: 'MCS/Components/Topbar',
+  title: 'mcs-common/Components/Topbar',
   component: Topbar,
   parameters: { layout: 'fullscreen' },
   tags: ['autodocs']
@@ -27,3 +27,4 @@ export const Default: Story = {
     }
   }
 };
+

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomSwitch from '@mcs/common/switch';
 
 const meta = {
-  title: 'MCS/Components/Switch',
+  title: 'mcs-common/Components/Switch',
   component: CustomSwitch,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -18,3 +18,4 @@ export const Default: Story = {
     onChange: () => {}
   }
 };
+

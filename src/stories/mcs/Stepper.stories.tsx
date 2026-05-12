@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomStepper from '@mcs/common/stepper';
 
 const meta = {
-  title: 'MCS/Components/Stepper',
+  title: 'mcs-common/Components/Stepper',
   component: CustomStepper,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -17,3 +17,4 @@ export const Default: Story = {
     activeStep: 1
   }
 };
+

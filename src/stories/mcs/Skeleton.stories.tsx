@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomSkeleton from '@mcs/common/skeleton';
 
 const meta = {
-  title: 'MCS/Components/Skeleton',
+  title: 'mcs-common/Components/Skeleton',
   component: CustomSkeleton,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -18,3 +18,4 @@ export const Default: Story = {
     height: 56
   }
 };
+

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import MyProfile from '@mcs/common/my-profile';
 
 const meta = {
-  title: 'MCS/Components/MyProfile',
+  title: 'mcs-common/Components/MyProfile',
   component: MyProfile,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -33,3 +33,4 @@ export const Default: Story = {
     })
   }
 };
+

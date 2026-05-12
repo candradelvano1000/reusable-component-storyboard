@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomProgress from '@mcs/common/progress';
 
 const meta = {
-  title: 'MCS/Components/Progress',
+  title: 'mcs-common/Components/Progress',
   component: CustomProgress,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -18,3 +18,4 @@ export const Default: Story = {
     value: 70
   }
 };
+

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomAppBar from '@mcs/common/appbar';
 
 const meta = {
-  title: 'MCS/Components/AppBar',
+  title: 'mcs-common/Components/AppBar',
   component: CustomAppBar,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -18,3 +18,4 @@ export const Default: Story = {
     color: 'primary'
   }
 };
+

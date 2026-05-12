@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import HeaderBarV2 from '@mcs/common/headerbar-v2';
 
 const meta = {
-  title: 'MCS/Components/HeaderBarV2',
+  title: 'mcs-common/Components/HeaderBarV2',
   component: HeaderBarV2,
   parameters: { layout: 'fullscreen' },
   tags: ['autodocs']
@@ -33,3 +33,4 @@ export const Default: Story = {
     onSearchResultSelect: () => {}
   }
 };
+

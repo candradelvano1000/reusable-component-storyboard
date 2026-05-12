@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomMenu from '@mcs/common/menu';
 
 const meta = {
-  title: 'MCS/Components/Menu',
+  title: 'mcs-common/Components/Menu',
   component: CustomMenu,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -20,3 +20,4 @@ export const Default: Story = {
     ]
   }
 };
+

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomRadioGroup from '@mcs/common/radiogroup';
 
 const meta = {
-  title: 'MCS/Components/RadioGroup',
+  title: 'mcs-common/Components/RadioGroup',
   component: CustomRadioGroup,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -23,3 +23,4 @@ export const Default: Story = {
     ]
   }
 };
+

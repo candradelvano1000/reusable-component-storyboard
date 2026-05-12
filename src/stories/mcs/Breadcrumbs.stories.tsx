@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomBreadcrumbs from '@mcs/common/breadcrumbs';
 
 const meta = {
-  title: 'MCS/Components/Breadcrumbs',
+  title: 'mcs-common/Components/Breadcrumbs',
   component: CustomBreadcrumbs,
   parameters: { layout: 'padded' },
   tags: ['autodocs']
@@ -20,3 +20,4 @@ export const Default: Story = {
     ]
   }
 };
+

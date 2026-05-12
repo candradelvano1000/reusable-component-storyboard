@@ -10,7 +10,13 @@
     "baseUrl": ".",
     "paths": {
       "@mcs/common/*": ["../mcs/common/src/*"],
-      "@mcs/common": ["../mcs/common/src"]
+      "@mcs/common": ["../mcs/common/src"],
+      "@mcs/product-catalog/*": ["../mcs/product-catalog/src/*"],
+      "@mcs/product-catalog": ["../mcs/product-catalog/src"],
+      "common_remote/Chip": ["../mcs/common/src/chip"],
+      "common_remote/Typography": ["../mcs/common/src/typography"],
+      "common_remote/Divider": ["../mcs/common/src/divider"],
+      "common_remote/Alert": ["../mcs/common/src/alert"]
     },
 
     /* Bundler mode */
