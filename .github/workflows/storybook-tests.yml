@@ -101,18 +101,21 @@ jobs:
             const branches = coverage.total.branches.pct;
             const functions = coverage.total.functions.pct;
             const statements = coverage.total.statements.pct;
-            
-            const comment = `## Storybook Test Coverage
-            
-| Metric | Coverage |
-|--------|----------|
-| Lines | ${lines}% |
-| Branches | ${branches}% |
-| Functions | ${functions}% |
-| Statements | ${statements}% |
 
-[View detailed coverage report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
-            
+            const reportUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const comment = [
+              '## Storybook Test Coverage',
+              '',
+              '| Metric | Coverage |',
+              '|--------|----------|',
+              `| Lines | ${lines}% |`,
+              `| Branches | ${branches}% |`,
+              `| Functions | ${functions}% |`,
+              `| Statements | ${statements}% |`,
+              '',
+              `[View detailed coverage report](${reportUrl})`,
+            ].join('\n');
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
