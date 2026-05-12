@@ -1,38 +1,29 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import Box from '@mui/material/Box';
+import CatalogTreeView from '@mcs/product-catalog/pages/components/CatalogTreeView';
 
-const meta: Meta = {
+const meta = {
   title: 'mcs-product-catalog/Components/CatalogTreeView',
-  component: () => (
-    <Box sx={{ p: 2 }}>
-      <p>CatalogTreeView - Tree view for catalog hierarchy</p>
-    </Box>
-  ),
+  component: CatalogTreeView,
   parameters: {
-    docs: {
-      description: {
-        component: 'Hierarchical tree view for displaying catalog categories and offerings structure.',
-      },
-    },
+    layout: 'fullscreen',
   },
   tags: ['autodocs'],
-};
+} satisfies Meta<typeof CatalogTreeView>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: StoryObj = {
+export const Preview: Story = {
   render: () => (
-    <Box sx={{ p: 2 }}>
-      <h3>CatalogTreeView Component</h3>
-      <p>Displays hierarchical catalog structure:</p>
-      <ul>
-        <li>Tree view of categories (parent-child relationships)</li>
-        <li>Offerings within categories</li>
-        <li>Expandable/collapsible nodes</li>
-        <li>Selection support for navigation</li>
-      </ul>
-      <p>Used in CatalogDetailPage for browsing catalog structure</p>
+    <Box sx={{ p: 3, maxWidth: 900 }}>
+      <CatalogTreeView
+        categories={[
+          { id: 'cat-home', name: 'Home Internet' },
+          { id: 'cat-mobile', name: 'Mobile Plans' },
+          { id: 'cat-b2b', name: 'Business Solutions' },
+        ]}
+      />
     </Box>
   ),
 };

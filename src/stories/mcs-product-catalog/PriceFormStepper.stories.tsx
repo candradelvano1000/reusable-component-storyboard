@@ -1,38 +1,43 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 import Box from '@mui/material/Box';
+import PriceFormStepper, { EMPTY_FORM } from '@mcs/product-catalog/pages/offering-price/PriceFormStepper';
+import type { PriceFormState } from '@mcs/product-catalog/pages/offering-price/PriceFormStepper';
 
-const meta: Meta = {
+const meta = {
   title: 'mcs-product-catalog/Pages/PriceFormStepper',
-  component: () => (
-    <Box sx={{ p: 2 }}>
-      <p>PriceFormStepper - Multi-step form for product offering prices</p>
-    </Box>
-  ),
+  component: PriceFormStepper,
   parameters: {
     layout: 'fullscreen',
-    docs: {
-      description: {
-        component: 'Stepper-based form for managing ProductOfferingPrice with time-based pricing and tax info.',
-      },
-    },
   },
   tags: ['autodocs'],
-};
+} satisfies Meta<typeof PriceFormStepper>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: StoryObj = {
-  render: () => (
+function PriceFormStepperPreview() {
+  const [form, setForm] = useState<PriceFormState>({
+    ...EMPTY_FORM,
+    name: 'Recurring Monthly Charge',
+    description: 'Base recurring charge for home internet offering',
+    priceType: 'recurring',
+    amount: '350000',
+    unit: 'IDR',
+    lifecycleStatus: 'Active',
+    recurringChargePeriod: 'month',
+    unitOfMeasure: 'Rp.',
+    startDateTime: '2026-01-01',
+    endDateTime: '2027-01-01',
+  });
+
+  return (
     <Box sx={{ p: 2 }}>
-      <h3>PriceFormStepper</h3>
-      <p>Multi-step form for creating/editing ProductOfferingPrice</p>
-      <ul>
-        <li>Step 1: Price type and amount</li>
-        <li>Step 2: Tax & Charges</li>
-        <li>Step 3: Validity period</li>
-        <li>Step 4: Unit of measure</li>
-      </ul>
+      <PriceFormStepper form={form} setForm={setForm} formError="" />
     </Box>
-  ),
+  );
+}
+
+export const Preview: Story = {
+  render: () => <PriceFormStepperPreview />,
 };

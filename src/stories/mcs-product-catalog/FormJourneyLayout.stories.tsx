@@ -1,37 +1,51 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import Box from '@mui/material/Box';
+import CustomTextField from '@mcs/common/textfield';
+import FormJourneyLayout from '@mcs/product-catalog/pages/components/FormJourneyLayout';
 
-const meta: Meta = {
+const meta = {
   title: 'mcs-product-catalog/Components/FormJourneyLayout',
-  component: () => (
-    <Box sx={{ p: 2 }}>
-      <p>FormJourneyLayout - Layout container for form journey patterns</p>
-    </Box>
-  ),
+  component: FormJourneyLayout,
   parameters: {
-    docs: {
-      description: {
-        component: 'Layout component for step-by-step form journeys with journey visualization and form container.',
-      },
-    },
+    layout: 'fullscreen',
   },
   tags: ['autodocs'],
-};
+} satisfies Meta<typeof FormJourneyLayout>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: StoryObj = {
+export const Preview: Story = {
   render: () => (
-    <Box sx={{ p: 2 }}>
-      <h3>FormJourneyLayout Component</h3>
-      <p>Layout wrapper for journey-based form experiences:</p>
-      <ul>
-        <li>Left: FormJourneyStepper (step navigation)</li>
-        <li>Center: Form content area</li>
-        <li>Right: Summary/preview panel</li>
-      </ul>
-      <p>Used by OfferingFormStepper, PriceFormStepper, SpecificationFormStepper</p>
+    <Box sx={{ p: 3, maxWidth: 1100 }}>
+      <FormJourneyLayout
+        sections={[
+          {
+            key: 'basic',
+            label: 'Basic Information',
+            icon: '1',
+            description: 'Primary identity and lifecycle fields',
+            badge: '✓',
+            content: <CustomTextField label="Offering Name" value="FiberHome Premium 200 Mbps" onChange={() => {}} />,
+          },
+          {
+            key: 'classification',
+            label: 'Classification',
+            icon: '2',
+            description: 'Category, channel, and market segment mapping',
+            badge: '3',
+            content: <CustomTextField label="Category" value="Home Internet" onChange={() => {}} />,
+          },
+          {
+            key: 'relationship',
+            label: 'Relationships',
+            icon: '3',
+            description: 'Specifications, prices, and linked offerings',
+            badge: '',
+            content: <CustomTextField label="Product Specification" value="Fiber Spec 200 Mbps" onChange={() => {}} />,
+          },
+        ]}
+      />
     </Box>
   ),
 };

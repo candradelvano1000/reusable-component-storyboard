@@ -1,40 +1,46 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 import Box from '@mui/material/Box';
+import OfferingFormStepper, { EMPTY_FORM } from '@mcs/product-catalog/pages/offering/OfferingFormStepper';
+import type { OfferingFormState } from '@mcs/product-catalog/pages/offering/OfferingFormStepper';
 
-const meta: Meta = {
+const meta = {
   title: 'mcs-product-catalog/Pages/OfferingFormStepper',
-  component: () => (
-    <Box sx={{ p: 2 }}>
-      <p>OfferingFormStepper - Multi-step form for creating/editing product offerings</p>
-      <p>Complex form with product specifications, pricing, relationships</p>
-    </Box>
-  ),
+  component: OfferingFormStepper,
   parameters: {
     layout: 'fullscreen',
-    docs: {
-      description: {
-        component: 'Stepper-based form for managing ProductOffering data including specs, prices, and related products.',
-      },
-    },
   },
   tags: ['autodocs'],
-};
+} satisfies Meta<typeof OfferingFormStepper>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: StoryObj = {
-  render: () => (
+function OfferingFormStepperPreview() {
+  const [form, setForm] = useState<OfferingFormState>({
+    ...EMPTY_FORM,
+    name: 'FiberHome Premium 200 Mbps',
+    description: 'Unlimited home internet bundle with router and installation included.',
+    version: '2.1',
+    lifecycleStatus: 'Launched',
+    isBundle: true,
+    isSellable: true,
+    startDateTime: '2026-01-01',
+    endDateTime: '2027-12-31',
+    category: [{ id: 'cat-fiber', name: 'Fiber Internet', '@referredType': 'Category' }],
+    productOfferingPrice: [{ id: 'price-monthly-200', name: 'Monthly Recurring Charge', '@referredType': 'ProductOfferingPrice' }],
+    bundledProductOffering: [{ id: 'off-router', name: 'WiFi Router Rental', bundledProductOfferingOptionNumber: 1 }],
+    marketSegment: [{ id: 'segment-home', name: 'Home Residential' }],
+    channel: [{ id: 'channel-web', name: 'Web Self-Service' }],
+  });
+
+  return (
     <Box sx={{ p: 2 }}>
-      <h3>OfferingFormStepper Component</h3>
-      <p>Multi-step form stepper for ProductOffering creation/editing</p>
-      <ul>
-        <li>Step 1: Basic offering details (name, description, lifecycle)</li>
-        <li>Step 2: Product specifications</li>
-        <li>Step 3: Pricing information</li>
-        <li>Step 4: Related products & bundles</li>
-        <li>Step 5: Relationships & policies</li>
-      </ul>
+      <OfferingFormStepper form={form} setForm={setForm} formError="" />
     </Box>
-  ),
+  );
+}
+
+export const Preview: Story = {
+  render: () => <OfferingFormStepperPreview />,
 };

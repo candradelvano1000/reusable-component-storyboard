@@ -1,37 +1,55 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import Box from '@mui/material/Box';
+import CustomTextField from '@mcs/common/textfield';
+import EntityFormDialog from '@mcs/product-catalog/pages/components/EntityFormDialog';
 
-const meta: Meta = {
-  title: 'mcs-product-catalog/Components/EntityFormDialog',
-  component: () => (
-    <Box sx={{ p: 2 }}>
-      <p>EntityFormDialog - Dialog for entity creation/editing</p>
-    </Box>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        component: 'Modal dialog for creating or editing catalog entities inline without leaving current form.',
-      },
-    },
-  },
-  tags: ['autodocs'],
+type CategoryForm = {
+  name: string;
+  description: string;
 };
 
-export default meta;
+const meta = {
+  title: 'mcs-product-catalog/Components/EntityFormDialog',
+  component: EntityFormDialog<CategoryForm>,
+  parameters: {
+    layout: 'padded',
+  },
+  tags: ['autodocs'],
+} satisfies Meta<typeof EntityFormDialog<CategoryForm>>;
 
-export const Default: StoryObj = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Preview: Story = {
   render: () => (
-    <Box sx={{ p: 2 }}>
-      <h3>EntityFormDialog Component</h3>
-      <p>Modal dialog for entity management:</p>
-      <ul>
-        <li>Create new entity (offering, spec, category, etc)</li>
-        <li>Edit existing entity</li>
-        <li>Inline form with essential fields</li>
-        <li>Quick action without page navigation</li>
-      </ul>
-    </Box>
+    <EntityFormDialog<CategoryForm>
+      open
+      onClose={() => {}}
+      title="Create Category"
+      submitLabel="Create"
+      initialForm={{ name: 'Home Internet', description: 'Residential broadband portfolio' }}
+      validate={(form) => {
+        if (form.name.trim()) {
+          return null;
+        }
+        return 'Name is required';
+      }}
+      onSubmit={async () => {}}
+      renderForm={({ form, setForm }) => (
+        <Box sx={{ display: 'grid', gap: 2, pt: 1 }}>
+          <CustomTextField
+            label="Name"
+            value={form.name}
+            onChange={(value: string) => setForm((prev) => ({ ...prev, name: value }))}
+          />
+          <CustomTextField
+            label="Description"
+            value={form.description}
+            onChange={(value: string) => setForm((prev) => ({ ...prev, description: value }))}
+          />
+        </Box>
+      )}
+    />
   ),
 };

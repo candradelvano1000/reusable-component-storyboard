@@ -1,41 +1,43 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 import Box from '@mui/material/Box';
+import RelationshipManager, { OFFERING_RELATIONSHIP_FIELDS } from '@mcs/product-catalog/pages/components/RelationshipManager';
 
-const meta: Meta = {
+const meta = {
   title: 'mcs-product-catalog/Components/RelationshipManager',
-  component: () => (
-    <Box sx={{ p: 2 }}>
-      <p>RelationshipManager - Manage entity relationships</p>
-    </Box>
-  ),
+  component: RelationshipManager,
   parameters: {
-    docs: {
-      description: {
-        component: 'Complex component for managing relationships between catalog entities (offerings, specs, etc.).',
-      },
-    },
+    layout: 'padded',
   },
   tags: ['autodocs'],
-};
+} satisfies Meta<typeof RelationshipManager>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: StoryObj = {
-  render: () => (
-    <Box sx={{ p: 2 }}>
-      <h3>RelationshipManager Component</h3>
-      <p>Manages entity relationships including:</p>
-      <ul>
-        <li>Product specifications relationships</li>
-        <li>Bundled products</li>
-        <li>Offering relationships</li>
-        <li>Agreements and policies</li>
-        <li>Related parties</li>
-        <li>External identifiers</li>
-        <li>Attachments</li>
-      </ul>
-      <p>Provides SingleRefManager and EntityMultiSelect utilities</p>
+function RelationshipManagerPreview() {
+  const [items, setItems] = useState<Record<string, string>[]>([
+    {
+      id: 'offering-rel-001',
+      name: 'FiberHome Plus Add-On',
+      relationshipType: 'bundles',
+      role: 'child',
+      '@type': 'ProductOfferingRelationship',
+    },
+  ]);
+
+  return (
+    <Box sx={{ maxWidth: 1100 }}>
+      <RelationshipManager
+        title="Product Offering Relationship"
+        items={items}
+        onChange={setItems}
+        fields={OFFERING_RELATIONSHIP_FIELDS}
+      />
     </Box>
-  ),
+  );
+}
+
+export const Preview: Story = {
+  render: () => <RelationshipManagerPreview />,
 };

@@ -1,40 +1,77 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import Box from '@mui/material/Box';
+import React, { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import Stack from '@mui/material/Stack';
+import DetailPageFrame from '@mcs/product-catalog/pages/components/DetailPageFrame';
+import { DetailField, SectionCard } from '@mcs/product-catalog/pages/components/DetailComponents';
 
-const meta: Meta = {
+const meta = {
   title: 'mcs-product-catalog/Pages/CatalogDetailPage',
-  component: () => (
-    <Box sx={{ p: 2 }}>
-      <p>CatalogDetailPage - View and manage product catalogs</p>
-    </Box>
-  ),
+  component: DetailPageFrame,
   parameters: {
     layout: 'fullscreen',
-    docs: {
-      description: {
-        component: 'Detail page for viewing and managing ProductCatalog with categories and offerings.',
-      },
-    },
   },
   tags: ['autodocs'],
-};
+} satisfies Meta<typeof Box>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: StoryObj = {
-  render: () => (
-    <Box sx={{ p: 2 }}>
-      <h3>CatalogDetailPage</h3>
-      <p>Displays catalog details including:</p>
-      <ul>
-        <li>Catalog metadata (name, description, lifecycle)</li>
-        <li>Categories tree view</li>
-        <li>Offerings list</li>
-        <li>Related parties and policies</li>
-        <li>Lifecycle status</li>
-      </ul>
-      <p>Supports browsing and management of catalog structure</p>
-    </Box>
-  ),
+function CatalogDetailPreview() {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const tabs = [
+    {
+      label: 'Overview',
+      icon: 'O',
+      content: (
+        <SectionCard title="Catalog Information">
+          <Stack direction="row" spacing={4}>
+            <div>
+              <DetailField label="Catalog Name" value="Residential Internet Catalog" />
+              <DetailField label="Description" value="Catalog for home internet and add-on products" />
+            </div>
+            <div>
+              <DetailField label="Version" value="3.0" />
+              <DetailField label="Lifecycle" value="Launched" />
+            </div>
+          </Stack>
+        </SectionCard>
+      ),
+    },
+    {
+      label: 'Categories',
+      icon: 'C',
+      content: (
+        <SectionCard title="Category Summary">
+          <DetailField label="Total Categories" value="12" />
+          <DetailField label="Top Level" value="Internet, TV, Bundles" />
+        </SectionCard>
+      ),
+    },
+  ];
+
+  return (
+    <DetailPageFrame
+      rootLabel="Catalog"
+      onBack={() => {}}
+      title="Residential Internet Catalog"
+      editLabel="Edit Catalog"
+      onEdit={() => {}}
+      chips={<div />}
+      tabs={tabs}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+      dialogOpen={false}
+      onDialogClose={() => {}}
+      dialogTitle="Edit Catalog"
+      dialogContent={<div />}
+      onSave={() => {}}
+      snack={{ open: false, message: '', severity: 'success' }}
+      onSnackClose={() => {}}
+    />
+  );
+}
+
+export const Preview: Story = {
+  render: () => <CatalogDetailPreview />,
 };

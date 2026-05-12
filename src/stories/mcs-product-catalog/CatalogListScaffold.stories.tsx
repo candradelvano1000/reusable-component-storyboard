@@ -1,37 +1,69 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import Box from '@mui/material/Box';
+import React, { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import CatalogListScaffold from '@mcs/product-catalog/pages/components/CatalogListScaffold';
 
-const meta: Meta = {
+const meta = {
   title: 'mcs-product-catalog/Components/CatalogListScaffold',
-  component: () => (
-    <Box sx={{ p: 2 }}>
-      <p>CatalogListScaffold - Layout scaffold for catalog lists</p>
-    </Box>
-  ),
+  component: CatalogListScaffold,
   parameters: {
-    docs: {
-      description: {
-        component: 'Reusable scaffold layout for catalog list views with tree and detail panes.',
-      },
-    },
+    layout: 'fullscreen',
   },
   tags: ['autodocs'],
-};
+} satisfies Meta<typeof CatalogListScaffold>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: StoryObj = {
-  render: () => (
-    <Box sx={{ p: 2 }}>
-      <h3>CatalogListScaffold Component</h3>
-      <p>Layout scaffold for catalog browsing:</p>
-      <ul>
-        <li>Left pane: CatalogTreeView for navigation</li>
-        <li>Right pane: Detail/list view of selected item</li>
-        <li>Responsive layout</li>
-        <li>Shared styling and interaction patterns</li>
-      </ul>
-    </Box>
-  ),
+function CatalogListScaffoldPreview() {
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  return (
+    <CatalogListScaffold
+      breadcrumbLabel="Product Catalog"
+      pageTitle="Product Catalog Management"
+      pageSubtitle="Manage catalogs, categories, offerings, and references in one place."
+      createLabel="Create Catalog"
+      onCreateClick={() => {}}
+      phases={[
+        { label: 'All', emoji: '📦', value: 'all' },
+        { label: 'Active', emoji: '✅', value: 'Active' },
+        { label: 'In Study', emoji: '🧪', value: 'In Study' },
+        { label: 'Retired', emoji: '🗂️', value: 'Retired' },
+      ]}
+      activeFilter={activeFilter}
+      onFilterChange={setActiveFilter}
+      dataGridProps={{
+        title: 'Catalog Entries',
+        rows: [
+          { id: 'cat-001', name: 'Residential Services', status: 'Active', version: '1.2' },
+          { id: 'cat-002', name: 'Business Connectivity', status: 'In Study', version: '1.0' },
+          { id: 'cat-003', name: 'Legacy Copper Plans', status: 'Retired', version: '0.9' },
+        ],
+        columns: [
+          { key: 'name', label: 'Name' },
+          { key: 'status', label: 'Lifecycle' },
+          { key: 'version', label: 'Version' },
+        ],
+      }}
+      createDialog={null}
+      editDialog={null}
+      deleteDialog={{
+        open: false,
+        onClose: () => {},
+        title: 'Delete Catalog',
+        message: 'Are you sure you want to delete this catalog?',
+        onConfirm: () => {},
+      }}
+      snack={{
+        open: true,
+        message: 'Catalog list loaded successfully',
+        severity: 'success',
+      }}
+      onCloseSnack={() => {}}
+    />
+  );
+}
+
+export const Preview: Story = {
+  render: () => <CatalogListScaffoldPreview />,
 };

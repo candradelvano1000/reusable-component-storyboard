@@ -1,38 +1,39 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import Box from '@mui/material/Box';
+import { DetailField, StatusChipField, SectionCard, RefEntityCard, RefEntityList, DETAIL_GRID_SX } from '@mcs/product-catalog/pages/components/DetailComponents';
 
-const meta: Meta = {
+const meta = {
   title: 'mcs-product-catalog/Components/DetailComponents',
-  component: () => (
-    <Box sx={{ p: 2 }}>
-      <p>DetailComponents - Reusable components for detail views</p>
-    </Box>
-  ),
+  component: SectionCard,
   parameters: {
-    docs: {
-      description: {
-        component: 'Collection of reusable components for building detail pages: DetailField, StatusChipField, SectionCard, RefEntityCard.',
-      },
-    },
+    layout: 'padded',
   },
   tags: ['autodocs'],
-};
+} satisfies Meta<typeof SectionCard>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: StoryObj = {
+export const Preview: Story = {
   render: () => (
-    <Box sx={{ p: 2 }}>
-      <h3>DetailComponents Collection</h3>
-      <p>Provides reusable components for detail page layouts:</p>
-      <ul>
-        <li><strong>DetailField</strong> - Display single field with label</li>
-        <li><strong>StatusChipField</strong> - Display status with chip component</li>
-        <li><strong>SectionCard</strong> - Card container for grouped fields</li>
-        <li><strong>RefEntityCard</strong> - Display reference entities (links to related items)</li>
-        <li><strong>DETAIL_GRID_SX</strong> - Reusable grid styling</li>
-      </ul>
-    </Box>
+    <SectionCard title="Offering Snapshot">
+      <Box sx={DETAIL_GRID_SX}>
+        <DetailField label="Name" value="FiberHome Premium 200 Mbps" />
+        <DetailField label="Version" value="2.1" />
+        <StatusChipField label="Lifecycle" value="Launched" />
+        <DetailField label="Last Updated" value="2026-02-14T10:45:00Z" />
+      </Box>
+      <RefEntityCard
+        label="Product Specification"
+        entity={{ id: 'spec-fiber-200', name: 'Fiber Broadband Spec', version: '1.3', referredType: 'ProductSpecification' }}
+      />
+      <RefEntityList
+        label="Related Parties"
+        items={[
+          { id: 'party-sales-01', name: 'Retail Sales Team', role: 'Seller', partyType: 'Organization' },
+          { id: 'party-ops-02', name: 'Provisioning Operations', role: 'Provider', partyType: 'Organization' },
+        ]}
+      />
+    </SectionCard>
   ),
 };

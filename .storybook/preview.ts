@@ -1,5 +1,23 @@
 import type { Preview } from '@storybook/react-vite'
 
+const g = globalThis as typeof globalThis & {
+  process?: { env?: Record<string, string> };
+};
+
+if (!g.process) {
+  g.process = { env: {} };
+}
+
+if (!g.process.env) {
+  g.process.env = {};
+}
+
+Object.assign(g.process.env, {
+  REACT_APP_API_BASE_URL: 'http://localhost:3004',
+  REACT_APP_APIGW_BASE_URL: 'https://apigw.neuron.id',
+  REACT_APP_USE_APIGW: 'false',
+});
+
 const preview: Preview = {
   parameters: {
     controls: {
