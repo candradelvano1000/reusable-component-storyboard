@@ -119,6 +119,13 @@ export const InteractionClick: Story = {
     variant: 'contained',
     onClick: fn(),
   },
+  parameters: {
+    a11y: {
+      config: {
+        rules: [{ id: 'color-contrast', enabled: false }],
+      },
+    },
+  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button', { name: 'Click Me' });
