@@ -16,6 +16,8 @@ const config: StorybookConfig = {
   ],
   "framework": "@storybook/react-vite",
   viteFinal: async (config) => {
+    const storybookNodeModules = path.resolve(dirname, '../node_modules');
+
     const existingDefine = config.define;
     config.define = existingDefine
       ? {
@@ -40,6 +42,10 @@ const config: StorybookConfig = {
       : (config.resolve.alias ?? {});
     config.resolve.alias = {
       ...existingAlias,
+      react: path.resolve(storybookNodeModules, 'react'),
+      'react-dom': path.resolve(storybookNodeModules, 'react-dom'),
+      'react/jsx-runtime': path.resolve(storybookNodeModules, 'react/jsx-runtime.js'),
+      'react/jsx-dev-runtime': path.resolve(storybookNodeModules, 'react/jsx-dev-runtime.js'),
       '@mcs/common': path.resolve(dirname, '../../mcs/common/src'),
       '@mcs/product-catalog': path.resolve(dirname, '../../mcs/product-catalog/src'),
       'common_remote/Button': path.resolve(dirname, '../../mcs/common/src/button'),
@@ -57,6 +63,11 @@ const config: StorybookConfig = {
       'common_remote/Divider': path.resolve(dirname, '../../mcs/common/src/divider'),
       'common_remote/Alert': path.resolve(dirname, '../../mcs/common/src/alert')
     };
+    config.resolve.dedupe = [
+      ...(config.resolve.dedupe ?? []),
+      'react',
+      'react-dom'
+    ];
 
     config.server ??= {};
     config.server.fs ??= {};

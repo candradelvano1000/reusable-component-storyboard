@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+const storybookNodeModules = path.resolve(dirname, 'node_modules');
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
@@ -20,7 +21,12 @@ export default defineConfig({
     }),
   },
   resolve: {
+    dedupe: ['react', 'react-dom'],
     alias: {
+      react: path.resolve(storybookNodeModules, 'react'),
+      'react-dom': path.resolve(storybookNodeModules, 'react-dom'),
+      'react/jsx-runtime': path.resolve(storybookNodeModules, 'react/jsx-runtime.js'),
+      'react/jsx-dev-runtime': path.resolve(storybookNodeModules, 'react/jsx-dev-runtime.js'),
       '@mcs/common': path.resolve(dirname, '../mcs/common/src'),
       '@mcs/product-catalog': path.resolve(dirname, '../mcs/product-catalog/src'),
       'common_remote/Button': path.resolve(dirname, '../mcs/common/src/button'),
