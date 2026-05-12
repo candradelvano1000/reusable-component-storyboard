@@ -1,0 +1,136 @@
+name: Storybook Tests & Build
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+
+  lint:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - name: Run ESLint
+        run: yarn lint
+
+  type-check:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - name: Type Check
+        run: yarn build
+
+  build-storybook:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - name: Build Storybook
+        run: yarn build-storybook
+      - uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: storybook-static/
+          retention-days: 1
+
+  test-stories:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      - name: Run Story Tests (Accessibility & Interactions)
+        run: yarn test:ci
+      - name: Upload Coverage Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 30
+      - name: Comment PR with Coverage
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const coverage = JSON.parse(fs.readFileSync('./coverage/coverage-summary.json', 'utf8'));
+            const lines = coverage.total.lines.pct;
+            const branches = coverage.total.branches.pct;
+            const functions = coverage.total.functions.pct;
+            const statements = coverage.total.statements.pct;
+            
+            const comment = `## Storybook Test Coverage
+            
+| Metric | Coverage |
+|--------|----------|
+| Lines | ${lines}% |
+| Branches | ${branches}% |
+| Functions | ${functions}% |
+| Statements | ${statements}% |
+
+[View detailed coverage report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  test-results:
+    needs: [lint, type-check, build-storybook, test-stories]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Check test results
+        if: |
+          needs.lint.result == 'failure' ||
+          needs.type-check.result == 'failure' ||
+          needs.build-storybook.result == 'failure' ||
+          needs.test-stories.result == 'failure'
+        run: exit 1
+      - name: All tests passed
+        run: echo "✅ All CI checks passed!"
