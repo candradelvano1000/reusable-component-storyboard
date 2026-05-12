@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, fn, userEvent, within } from 'storybook/test';
 import CustomButton from '@mcs/common/button';
 
 const meta = {
@@ -109,6 +110,20 @@ export const FullWidth: Story = {
   args: {
     label: 'Full Width Button',
     fullWidth: true,
+  },
+};
+
+export const InteractionClick: Story = {
+  args: {
+    label: 'Click Me',
+    variant: 'contained',
+    onClick: fn(),
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button', { name: 'Click Me' });
+    await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalledTimes(1);
   },
 };
 

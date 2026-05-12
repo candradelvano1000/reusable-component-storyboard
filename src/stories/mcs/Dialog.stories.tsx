@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomDialog from '@mcs/common/dialog';
 import CustomButton from '@mcs/common/button';
 import { useState } from 'react';
+import { expect, userEvent, within } from 'storybook/test';
 
 const meta = {
   title: 'mcs-common/Components/Dialog',
@@ -81,5 +82,14 @@ export const ConfirmationDialog: Story = {
     ),
   },
   render: (args) => <CustomDialog {...args} />,
+};
+
+export const InteractionOpenDialog: Story = {
+  render: () => <DialogWithState />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: 'Open Dialog' }));
+    await expect(canvas.getByText('This is the dialog content. You can add any content here.')).toBeInTheDocument();
+  },
 };
 

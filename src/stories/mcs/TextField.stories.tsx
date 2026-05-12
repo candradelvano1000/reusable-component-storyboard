@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import { expect, userEvent, within } from 'storybook/test';
 import CustomTextField from '@mcs/common/textfield';
 
 const meta = {
@@ -87,6 +89,30 @@ export const Required: Story = {
   args: {
     label: 'Required field',
     required: true,
+  },
+};
+
+function TextFieldInteractionDemo() {
+  const [value, setValue] = useState('');
+
+  return (
+    <CustomTextField
+      label="Interaction Field"
+      value={value}
+      onChange={setValue}
+      helperText={value.length > 0 ? `Length: ${value.length}` : 'Type something'}
+    />
+  );
+}
+
+export const InteractionTyping: Story = {
+  render: () => <TextFieldInteractionDemo />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('textbox', { name: 'Interaction Field' });
+    await userEvent.type(input, 'abc');
+    await expect(input).toHaveValue('abc');
+    await expect(canvas.getByText('Length: 3')).toBeInTheDocument();
   },
 };
 

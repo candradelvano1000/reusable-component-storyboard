@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import { expect, userEvent, within } from 'storybook/test';
 import CustomSelect from '@mcs/common/select';
 
 const meta = {
@@ -70,6 +72,32 @@ export const WithHelperText: Story = {
     options: options,
     value: 'opt1',
     helperText: 'Please select one option',
+  },
+};
+
+function SelectInteractionDemo() {
+  const [value, setValue] = useState<string | number>('opt1');
+
+  return (
+    <CustomSelect
+      label="Interaction Select"
+      options={options}
+      value={value}
+      onChange={setValue}
+      helperText={`Selected: ${value}`}
+    />
+  );
+}
+
+export const InteractionChange: Story = {
+  render: () => <SelectInteractionDemo />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const surface = within(canvasElement.ownerDocument.body);
+    const select = canvas.getByRole('combobox', { name: 'Interaction Select' });
+    await userEvent.click(select);
+    await userEvent.click(surface.getByRole('option', { name: 'Option 3' }));
+    await expect(canvas.getByText('Selected: opt3')).toBeInTheDocument();
   },
 };
 
