@@ -22,6 +22,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
+      - name: Prepare local file dependencies path
+        shell: bash
+        run: |
+          if [ -d "$GITHUB_WORKSPACE/mcs" ] && [ ! -e "$GITHUB_WORKSPACE/../mcs" ]; then
+            ln -s "$GITHUB_WORKSPACE/mcs" "$GITHUB_WORKSPACE/../mcs"
+          fi
+          if [ ! -d "$GITHUB_WORKSPACE/../mcs/common" ]; then
+            echo "Expected path not found: $GITHUB_WORKSPACE/../mcs/common"
+            echo "Ensure mcs/common exists in repository root or provide checkout step for mcs repository."
+            exit 1
+          fi
       - run: yarn install --frozen-lockfile
 
   lint:
@@ -34,6 +45,17 @@ jobs:
         with:
           node-version: '24.x'
           cache: 'yarn'
+      - name: Prepare local file dependencies path
+        shell: bash
+        run: |
+          if [ -d "$GITHUB_WORKSPACE/mcs" ] && [ ! -e "$GITHUB_WORKSPACE/../mcs" ]; then
+            ln -s "$GITHUB_WORKSPACE/mcs" "$GITHUB_WORKSPACE/../mcs"
+          fi
+          if [ ! -d "$GITHUB_WORKSPACE/../mcs/common" ]; then
+            echo "Expected path not found: $GITHUB_WORKSPACE/../mcs/common"
+            echo "Ensure mcs/common exists in repository root or provide checkout step for mcs repository."
+            exit 1
+          fi
       - run: yarn install --frozen-lockfile
       - name: Run ESLint
         run: yarn lint
@@ -48,6 +70,17 @@ jobs:
         with:
           node-version: '24.x'
           cache: 'yarn'
+      - name: Prepare local file dependencies path
+        shell: bash
+        run: |
+          if [ -d "$GITHUB_WORKSPACE/mcs" ] && [ ! -e "$GITHUB_WORKSPACE/../mcs" ]; then
+            ln -s "$GITHUB_WORKSPACE/mcs" "$GITHUB_WORKSPACE/../mcs"
+          fi
+          if [ ! -d "$GITHUB_WORKSPACE/../mcs/common" ]; then
+            echo "Expected path not found: $GITHUB_WORKSPACE/../mcs/common"
+            echo "Ensure mcs/common exists in repository root or provide checkout step for mcs repository."
+            exit 1
+          fi
       - run: yarn install --frozen-lockfile
       - name: Type Check
         run: yarn build
@@ -62,6 +95,17 @@ jobs:
         with:
           node-version: '24.x'
           cache: 'yarn'
+      - name: Prepare local file dependencies path
+        shell: bash
+        run: |
+          if [ -d "$GITHUB_WORKSPACE/mcs" ] && [ ! -e "$GITHUB_WORKSPACE/../mcs" ]; then
+            ln -s "$GITHUB_WORKSPACE/mcs" "$GITHUB_WORKSPACE/../mcs"
+          fi
+          if [ ! -d "$GITHUB_WORKSPACE/../mcs/common" ]; then
+            echo "Expected path not found: $GITHUB_WORKSPACE/../mcs/common"
+            echo "Ensure mcs/common exists in repository root or provide checkout step for mcs repository."
+            exit 1
+          fi
       - run: yarn install --frozen-lockfile
       - name: Build Storybook
         run: yarn build-storybook
@@ -81,6 +125,17 @@ jobs:
         with:
           node-version: '24.x'
           cache: 'yarn'
+      - name: Prepare local file dependencies path
+        shell: bash
+        run: |
+          if [ -d "$GITHUB_WORKSPACE/mcs" ] && [ ! -e "$GITHUB_WORKSPACE/../mcs" ]; then
+            ln -s "$GITHUB_WORKSPACE/mcs" "$GITHUB_WORKSPACE/../mcs"
+          fi
+          if [ ! -d "$GITHUB_WORKSPACE/../mcs/common" ]; then
+            echo "Expected path not found: $GITHUB_WORKSPACE/../mcs/common"
+            echo "Ensure mcs/common exists in repository root or provide checkout step for mcs repository."
+            exit 1
+          fi
       - run: yarn install --frozen-lockfile
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
