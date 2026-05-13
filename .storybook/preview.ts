@@ -351,7 +351,14 @@ const preview: Preview = {
 
     a11y: {
       test: 'todo'
-    }
+    },
+
+    backgrounds: {
+      options: {
+        light: { name: 'light', value: '#ffffff' },
+        dark: { name: 'dark', value: '#333333' },
+      },
+    },
   },
   globalTypes: {
     theme: {
